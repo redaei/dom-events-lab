@@ -10,9 +10,7 @@ let operation = null
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-const displayOnScreen = (theText) => {
-  screen.innerText = theText
-}
+
 
 // buttons.forEach((button) => {
 //   button.addEventListener('click', (event) => {
@@ -23,9 +21,7 @@ const displayOnScreen = (theText) => {
 // })
 
 calculator.addEventListener('click', (event) => {
-  // This log is for testing purposes to verify we're getting the correct value
-  // You have to click a button to see this log
-  console.log(event.target.innerText)
+
 
   // Example
   if (event.target.classList.contains('number')) {
@@ -52,13 +48,14 @@ calculator.addEventListener('click', (event) => {
 
   //operators
   if (event.target.classList.contains('operator')) {
+    operation = event.target.innerText
+    event.target.style.border= "2px solid rgb(255, 154, 60)"
     if (operation === 'C') {
-      num1 = 0
-      num2 = null
-      operation = null
-      displayOnScreen(num1)
-    } else {
-      operation = event.target.innerText
+      displayOnScreen("0");
+      num1 = 0;
+      num2 = null;
+      operation = null;
+      unselectOperator(operation)
     }
 
     //put result in num1
@@ -90,7 +87,20 @@ calculator.addEventListener('click', (event) => {
     //put result in num1
     // clear num2
     //clear operation
+
+
   }
+  // This log is for testing purposes to verify we're getting the correct value
+  // You have to click a button to see this log
+  console.log(event.target.innerText)
 })
 
 /*-------------------------------- Functions --------------------------------*/
+const displayOnScreen = (theText) => {
+  screen.innerText = theText
+}
+const unselectOperator = (operation) => {
+  
+ 
+
+}
