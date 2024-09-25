@@ -1,5 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
-const buttons = document.querySelectorAll('.button')
+//const buttons = document.querySelectorAll('.button')
 const calculator = document.querySelector('#calculator')
 const screen = document.querySelector('.display')
 /*-------------------------------- Variables --------------------------------*/
@@ -10,23 +10,9 @@ let operation = null
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-
-
-// buttons.forEach((button) => {
-//   button.addEventListener('click', (event) => {
-//     // This log is for testing purposes to verify we're getting the correct value
-//     console.log(event.target.innerText)
-//     // Future logic to capture the button's value would go here...
-//   })
-// })
-
 calculator.addEventListener('click', (event) => {
-
-
   // Example
   if (event.target.classList.contains('number')) {
-    // Do something with a number
-
     if (operation) {
       if (num2) {
         num2 = num2 + event.target.innerText
@@ -49,18 +35,14 @@ calculator.addEventListener('click', (event) => {
   //operators
   if (event.target.classList.contains('operator')) {
     operation = event.target.innerText
-    event.target.style.border= "2px solid rgb(255, 154, 60)"
+    event.target.style.border = '2px solid rgb(255, 154, 60)'
     if (operation === 'C') {
-      displayOnScreen("0");
-      num1 = 0;
-      num2 = null;
-      operation = null;
-      unselectOperator(operation)
+      displayOnScreen('0')
+      num1 = 0
+      num2 = null
+      operation = null
+      unselectOperators()
     }
-
-    //put result in num1
-    // clear num2
-    //clear operation
   }
 
   //equal
@@ -81,14 +63,7 @@ calculator.addEventListener('click', (event) => {
     displayOnScreen(num1)
     num2 = null
     operation = null
-
-    // num1 = event.target.innerText
-
-    //put result in num1
-    // clear num2
-    //clear operation
-
-
+    unselectOperators()
   }
   // This log is for testing purposes to verify we're getting the correct value
   // You have to click a button to see this log
@@ -99,8 +74,9 @@ calculator.addEventListener('click', (event) => {
 const displayOnScreen = (theText) => {
   screen.innerText = theText
 }
-const unselectOperator = (operation) => {
-  
- 
-
+const unselectOperators = () => {
+  document.querySelectorAll('.operator').forEach((op) => {
+    op.removeAttribute('style')
+    console.log(op)
+  })
 }
